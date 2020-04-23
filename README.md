@@ -49,12 +49,12 @@ Demo2:
 
 If you wish not to immediately run the application after deployment, simply skip the ```--run``` flag.
 
-## Inputs
+# Inputs
 | Proto       | Type               | Description                                             |
 | ----------- | ------------------ | ------------------------------------------------------- |
 | find_me_cmd | FindMeCommandProto | Find-Me sensor command relay with blink time [seconds]. |
 
-## Outputs
+# Outputs
 | Name        | Type            | Description                                                                                                                                                                                                                    |
 | ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | flatscan    | FlatscanProto   | A flatscan proto containing only the measurement data of the sensor. All angle values are given in [radians].                                                                                                                  |
@@ -63,7 +63,7 @@ If you wish not to immediately run the application after deployment, simply skip
 
 
 
-## Parameters
+# Parameters
 
 | Parameter                   | Description                                                               | Type        | Default         |
 | --------------------------- | ------------------------------------------------------------------------- | ----------- | --------------- |
