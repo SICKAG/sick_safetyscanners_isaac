@@ -1,0 +1,126 @@
+{
+  "name": "sick_safetyscanner_websight",
+  "modules": [
+    "sick",
+    "@com_nvidia_isaac//packages/sight",
+    "@com_nvidia_isaac//packages/utils",
+    "@com_nvidia_isaac//packages/viewers"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "name": "sick_node",
+        "components": [
+          {
+            "name": "lidar_initializer",
+            "type": "isaac::alice::PoseInitializer"
+          },
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "safety_scanner",
+            "type": "isaac::sick_safetyscanners::SickSafetyScanner"
+          }
+        ]
+      },
+      {
+        "name": "point_cloud",
+        "components": [
+          {
+            "name": "ml",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "isaac.utils.FlatscanToPointCloud",
+            "type": "isaac::utils::FlatscanToPointCloud"
+          }
+        ]
+      },
+      {
+        "name": "viewer",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "isaac.viewers.PointCloudViewer",
+            "type": "isaac::viewers::PointCloudViewer"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "sick_node/safety_scanner/flatscan",
+        "target": "point_cloud/isaac.utils.FlatscanToPointCloud/flatscan"
+      },
+      {
+        "source": "point_cloud/isaac.utils.FlatscanToPointCloud/cloud",
+        "target": "viewer/isaac.viewers.PointCloudViewer/cloud"
+      }
+    ]
+  },
+  "config": {
+    "viewer": {
+      "message_ledger": {
+        "history": 10
+      },
+      "isaac.viewers.PointCloudViewer": {
+        "max_distance": 10,
+        "frame": "lidar"
+      }
+    },
+    "sick_node": {
+      "safety_scanner": {
+        "sensor_ip": "192.168.1.11",
+        "host_ip": "192.168.1.100",
+        "general_system_state": true,
+        "derived_settings": true,
+        "measurement_data": true,
+        "intrusion_data": true,
+        "application_io_data": true,
+        "flatscan_pub_active": true
+      },
+      "lidar_initializer": {
+        "lhs_frame": "world",
+        "rhs_frame": "lidar",
+        "pose": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "webroot": "external/com_nvidia_isaac/packages/sight/webroot",
+        "assetroot": ".../isaac_assets",
+        "port": 3000,
+        "ui_config": {
+          "windows": {
+            "SICK Safety Scan": {
+              "channels": [
+                {
+                  "name": "sick_safetyscanner_websight/viewer/isaac.viewers.PointCloudViewer/points",
+                  "active": true
+                }
+              ],
+              "dims": {
+                "height": 800,
+                "width": 800
+              },
+              "renderer": "3d"
+            }
+          }
+        }
+      }
+    }
+  }
+}

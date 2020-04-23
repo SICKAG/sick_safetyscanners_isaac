@@ -1,0 +1,59 @@
+{
+  "name": "sick_safetyscanner_test",
+  "modules": [
+    "sick"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "name": "sick_node",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "safety_scanner",
+            "type": "isaac::sick_safetyscanners::SickSafetyScanner"
+          }
+        ]
+      },
+      {
+        "name": "consumer_node",
+        "components": [
+          {
+            "name": "consumer",
+            "type": "isaac::sick_safetyscanners::Consumer"
+          },
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "sick_node/safety_scanner/safety_scan",
+        "target": "consumer_node/consumer/safety_scan"
+      },
+      {
+        "source": "consumer_node/consumer/find_me_cmd",
+        "target": "sick_node/safety_scanner/find_me_cmd"
+      }
+    ]
+  },
+  "config": {
+    "sick_node": {
+      "safety_scanner": {
+        "sensor_ip": "192.168.1.11",
+        "host_ip": "192.168.1.100",
+        "general_system_state": true,
+        "derived_settings": true,
+        "measurement_data": true,
+        "intrusion_data": true,
+        "application_io_data": true
+      }
+    }
+  }
+}
