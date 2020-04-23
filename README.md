@@ -49,6 +49,9 @@ Demo2:
 
 If you wish not to immediately run the application after deployment, simply skip the ```--run``` flag.
 
+# Usage
+If you have no prior experience using proto messages (in particular with Capt'n'proto), you can find a very simple example how to setup your own codelet and receiving safety_scanner messages from the sensor driver codelet in ```/packages/sick/components/Consumer.{cpp/hpp}```. It also demonstrates how to send command protos to the sensor.
+
 # Inputs
 | Proto       | Type               | Description                                             |
 | ----------- | ------------------ | ------------------------------------------------------- |
