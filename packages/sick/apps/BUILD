@@ -18,7 +18,7 @@ file   BUILD
 author Martin Schulze <schulze@fzi.de>
 date   2020-04-15
 """
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_app")
+load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_app")
 
 isaac_app(
     name = "sick_safetyscanner_test",
@@ -33,8 +33,8 @@ isaac_app(
     app_json_file = "sick_safetyscanner_websight.app.json",
     modules = [
         "sick",
-        "@com_nvidia_isaac//packages/sight",
-        "@com_nvidia_isaac//packages/utils",
-        "@com_nvidia_isaac//packages/viewers",
+        "@com_nvidia_isaac_sdk//packages/sight",
+        "@com_nvidia_isaac_sdk//packages/utils",
+        "@com_nvidia_isaac_sdk//packages/viewers",
     ],
 )

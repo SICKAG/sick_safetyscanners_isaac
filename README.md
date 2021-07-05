@@ -8,11 +8,11 @@
 
 To build NVIDIA's ISAAC along with the driver for SICK AG Safety Scanners:
 
-- Download ISAAC SDK (version 2019.3 or higher) from [https://developer.nvidia.com/isaac/downloads](https://developer.nvidia.com/isaac/downloads).
+- Download ISAAC SDK (version 2021.1 or higher) from [https://developer.nvidia.com/isaac/downloads](https://developer.nvidia.com/isaac/downloads).
 - Extract the ISAAC SDK release in a local folder.
 - Install the [required dependencies](https://docs.nvidia.com/isaac/isaac/doc/setup.html#installing-dependencies-on-the-desktop) for ISAAC.
 - Clone this repository into another local folder and open the WORKSPACE file in a text/code editor.
-- Change the path '/home/schulze/tmp/sick/isaac' (line 32) to the path of the location where the ISAAC SDK has been extracted to.
+- Change the path '/home/schulze/tmp/sick/isaac' (line 32) to the path of the location where the ISAAC SDK has been extracted to (<your-path-to-isaac-root>/sdk).
 - To build ISAAC SDK + Sick Safety Scanner package you can simply execute ```bazel build``` within the root folder of this package.
 
 # Demonstration Apps

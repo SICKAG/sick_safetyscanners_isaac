@@ -100,8 +100,8 @@
     },
     "websight": {
       "WebsightServer": {
-        "webroot": "external/com_nvidia_isaac/packages/sight/webroot",
-        "assetroot": ".../isaac_assets",
+        "webroot": "packages/sight/webroot",
+        "assetroot": "external/isaac_assets",
         "port": 3000,
         "ui_config": {
           "windows": {

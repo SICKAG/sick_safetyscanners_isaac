@@ -19,7 +19,7 @@ author Martin Schulze <schulze@fzi.de>
 date   2020-04-15
 """
 
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_cc_library")
+load("@com_nvidia_isaac_engine//bzl:isaac_engine.bzl", "isaac_cc_library")
 load("//packages/sick/messages:messages.bzl", "create_message_proto_libraries", "message_proto_library_names")
 
 filegroup(
@@ -35,7 +35,7 @@ isaac_cc_library(
     hdrs = ["safety_scan.hpp"],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_nvidia_isaac//messages:proto_registry",
+        "@com_nvidia_isaac_sdk//messages:proto_registry",
         "safety_scan_proto",
     ]
 )
@@ -45,7 +45,7 @@ isaac_cc_library(
     hdrs = ["commands.hpp"],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_nvidia_isaac//messages:proto_registry",
+        "@com_nvidia_isaac_sdk//messages:proto_registry",
         "commands_proto"
     ]
 )

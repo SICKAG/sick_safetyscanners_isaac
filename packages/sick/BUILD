@@ -12,7 +12,7 @@ author Martin Schulze <schulze@fzi.de>
 date   2020-04-15
 """
 
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_cc_module", "isaac_component")
+load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_cc_module", "isaac_component")
 
 
 isaac_cc_module(

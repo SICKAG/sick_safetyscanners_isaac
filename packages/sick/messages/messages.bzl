@@ -11,7 +11,7 @@ file   messages.bzl
 author Martin Schulze <schulze@fzi.de>
 date   2020-04-15
 """
-load("@com_nvidia_isaac//engine/build:cc_capnp_library.bzl", "cc_capnp_library")
+load("@com_nvidia_isaac_engine//engine/build:cc_capnp_library.bzl", "cc_capnp_library")
 
 # A list of all capnp files and their capnp dependencies
 _protos = [

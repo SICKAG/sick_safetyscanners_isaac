@@ -24,7 +24,7 @@ OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_http_archive", "isaac_new_http_archive", "isaac_new_local_repository", "isaac_new_git_repository")
+load("@com_nvidia_isaac_engine//bzl:deps.bzl", "isaac_http_archive", "isaac_new_git_repository")
 
 def clean_dep(dep):
     return str(Label(dep))

@@ -28,20 +28,28 @@ workspace(name = "sick_safetyscanners")
 
 # Point following dependency to Isaac SDK downloaded from https://developer.nvidia.com/isaac/downloads
 local_repository(
-    name = "com_nvidia_isaac",
-    path = "/home/schulze/tmp/sick/isaac",
+    name = "com_nvidia_isaac_sdk",
+    path = "/home/ubuntu/isaac/sdk",
 )
 
-load("@com_nvidia_isaac//third_party:engine.bzl", "isaac_engine_workspace")
-load("@com_nvidia_isaac//third_party:packages.bzl", "isaac_packages_workspace")
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_git_repository", "isaac_new_http_archive")
+local_repository(
+    name = "com_nvidia_isaac_engine",
+    path = "/home/ubuntu/isaac/engine"
+)
+
+load("@com_nvidia_isaac_engine//third_party:engine.bzl", "isaac_engine_workspace")
+load("@com_nvidia_isaac_engine//bzl:deps.bzl", "isaac_git_repository", "isaac_http_archive")
+load("@com_nvidia_isaac_sdk//third_party:packages.bzl", "isaac_packages_workspace")
+load("@com_nvidia_isaac_sdk//third_party:assets.bzl", "isaac_assets_workspace")
 
 isaac_engine_workspace()
 
 isaac_packages_workspace()
 
+isaac_assets_workspace()
+
 # Loads before boost to override for aarch64 specific config
-isaac_new_http_archive(
+isaac_http_archive(
     name = "org_lzma_lzma",
     build_file = "@com_nvidia_isaac//third_party:lzma.BUILD",
     licenses = ["@org_lzma_lzma//:COPYING"],
@@ -67,7 +75,7 @@ load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_deps")
 boost_deps()
 
 # Configures toolchain
-load("@com_nvidia_isaac//engine/build/toolchain:toolchain.bzl", "toolchain_configure")
+load("@com_nvidia_isaac_engine//toolchain:toolchain.bzl", "toolchain_configure")
 
 toolchain_configure(name = "toolchain")
 
